@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/agroop-io/cli.svg?style=svg)](https://circleci.com/gh/agroop-io/cli) [![Downloads](http://pepy.tech/badge/agroop)](http://pepy.tech/project/agroop)
+[![CircleCI](https://circleci.com/gh/arcsecond-io/agroop.svg?style=svg)](https://circleci.com/gh/arcsecond-io/agroop) [![Downloads](http://pepy.tech/badge/agroop)](http://pepy.tech/project/agroop)
 
 # agroop
 
