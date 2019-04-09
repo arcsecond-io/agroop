@@ -1,0 +1,3 @@
+class AgroopError(Exception):
+    pass
+
