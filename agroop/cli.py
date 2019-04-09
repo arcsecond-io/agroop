@@ -1,12 +1,14 @@
 import click
 
 from . import __version__
+from .agroop import parse_coord_string
 from .options import State, basic_options
 
 pass_state = click.make_pass_decorator(State, ensure=True)
 
 VERSION_HELP_STRING = "Show the CLI version and exit."
 BAD_PARAMETER_STRING = "(empty)"
+
 
 def get_input(ctx, param, value):
     if not value and not click.get_text_stream('stdin').isatty():
@@ -15,14 +17,15 @@ def get_input(ctx, param, value):
         return value
 
 
+@basic_options
 @click.command(short_help="Input coordinates list (JSON, XML or simple lines)")
 @click.option('-V', '--version', is_flag=True, help=VERSION_HELP_STRING)
-@click.argument('ref', required=False)
-@click.argument('dist', type=float, required=False)
+@click.argument('ref')
+@click.argument('dist', type=float)
 @click.argument('input', callback=get_input, required=False)
-@basic_options
+@pass_state
 @click.pass_context
-def main(ctx, ref, dist, input, version=False, v=False, h=False):
+def main(ctx, state, ref, dist, input, version=False, v=False, h=False):
     """agroop = approximate 'grep' for coordinates
 
     agroop reads a coordinates list INPUT and filters out those that are at a distance DIST expressed in arcseconds
@@ -51,4 +54,4 @@ def main(ctx, ref, dist, input, version=False, v=False, h=False):
         raise click.BadParameter(BAD_PARAMETER_STRING, ctx=ctx, param_hint='INPUT')
 
     if ref and dist and input:
-        click.echo(ref + '|' + str(dist) + '|' + input)
+        click.echo(parse_coord_string(ref, state))
