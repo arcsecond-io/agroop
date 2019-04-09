@@ -25,7 +25,9 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'click',
+        'click>=7',
+        'astropy>=3',
+        'arcsecond>=0.6.2'
     ],
     entry_points={
         'console_scripts': [
