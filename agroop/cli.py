@@ -16,15 +16,14 @@ def get_input(ctx, param, value):
 
 
 @click.command(short_help="Input coordinates list (JSON, XML or simple lines)")
-@click.option('-V', is_flag=True, help=VERSION_HELP_STRING)
-@click.option('--version', is_flag=True, help=VERSION_HELP_STRING)
-@click.option('-h', is_flag=True, help="Show this message and exit.")
+@click.option('-V', '--version', is_flag=True, help=VERSION_HELP_STRING)
 @click.argument('ref', required=False)
 @click.argument('dist', type=float, required=False)
 @click.argument('input', callback=get_input, required=False)
+@basic_options
 @click.pass_context
 def main(ctx, ref, dist, input, version=False, v=False, h=False):
-    """Approximately filter input according to coordinates distance.
+    """agroop = approximate 'grep' for coordinates
 
     agroop reads a coordinates list INPUT and filters out those that are at a distance DIST expressed in arcseconds
     (of course...) shorter or equal to a reference position REF.
